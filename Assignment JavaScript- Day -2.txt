@@ -1,0 +1,160 @@
+
+1. List 5 difference between Browser JS(console) v Nodejs
+Ans:
+Node js :
+- Node doesn’t have a predefined “window” object cause it doesn’t have a window to draw anything.
+- “location” object is related to a particular url; that means it is for page specific. So, node doesn’t require that.
+-  Node doesn’t have “document” object also, cause it never have to render anything in a page.
+- Node has “global”, which is a predefined global object. It contains several functions that are not available in browsers, cause they are needed for server side works only.
+- “require” object is predefined in Node which is used to include modules in the app.
+- In Node everything is a module. You must keep your code inside a module.
+Browser js(Console) :
+-“window” is a predefined global object which has functions and attributes, that have to deal with window that has been drawn.
+-“location” is another predefined object in browsers, that has all the information about the url we have loaded.
+-“document”, which is also another predefined global variable in browsers, has the html which is rendered.
+-Browsers may have an object named “global”, but it will be the exact one as “window”.
+-Browsers don’t have “require” predefined. You may include it in your app for asynchronous file loading.
+-Moduling is not mandatory in client side JavaScript, i.e. in browsers.
+
+
+
+
+2. watch & summary 5 points - https://www.youtube.com/watch?v=SmE4OwHztCc&ab_channel=JSConf
+
+<script/> at the bottom
+-> parse uninterrupted 
+-> Fasterr to render
+-> defer and async attributes
+->Trade off
+
+DOM + CSSOM 
+-> Combines the two object modules, style resolution
+-> This is the actual representation of what will show on screen
+-> not a 1-to 1 mapping of your HTML.
+
+Multiple trees
+-> RenderObject
+-> RenderStyles
+-> RenderLayers
+-> Line boxes
+
+Not in the render tree
+-> Non-visual element head, script, title etc.
+-> Nodes hidden via display:none;
+
+DOM Node to RenderObject
+-> Visual output
+-> Geometric info
+-> can layout and paint
+-> Holds style & computed metrics
+
+Calculating visual properties
+-> combines all styles
+-> defaults, external, style elements & inline
+-> complexity around matching rules for each element
+-> style computation
+
+Recursive process
+-> Traverse render tree
+-> Nodes position and size
+-> Layout its children
+
+Will batch layouts 
+-> Incremental layouts
+-> The browser will intelligently batch changes
+-> Render tree item will flag themselves as dirty.
+-> The batch will traverse the tree and find all dirty trees
+-> Asynchronous.
+
+
+RenderLayers
+-> create layers from RenderObject
+-> Position nodes, transparency, overflow, canvas, video etc
+-> Many-to-1 relationship a RenderLayout could contain multiple RenderObjects
+
+Painting 
+-> Produces a bitmap from each layer
+-> Bitmap is uploaded to the GPU as a texture
+_> composites the textures into a final image to render to screen
+ 
+
+Recap
+-> Parsing --> DOM Tree
+-> DOM Tree--> Render Tree
+-> Is actually 4 trees
+-> Layout computes where a Node will be on the screen 
+-> Painting computes bitmaps and composites to screen
+
+
+
+
+
+
+3. To read - https://stackoverflow.com/questions/5641997/is-it-necessary-to-write-head-body-and-html-tags
+Ans:
+An html element's start tag may be omitted if the first thing inside the html element is not a comment.
+
+An html element's end tag may be omitted if the html element is not immediately followed by a comment.
+
+A head element's start tag may be omitted if the element is empty, or if the first thing inside the head element is an element.
+
+A head element's end tag may be omitted if the head element is not immediately followed by a space character or a comment.
+
+A body element's start tag may be omitted if the element is empty, or if the first thing inside the body element is not a space character or a comment, except if the first thing inside the body element is a script or style element.
+
+A body element's end tag may be omitted if the body element is not immediately followed by a comment.
+
+
+4. Execute the below code and write your description in txt file
+   1. typeof(1)
+   2. typeof(1.1)
+   3. typeof('1.1')
+   4. typeof(true)
+   5. typeof(null)
+   6. typeof(undefined)
+   7. typeof([])
+   8. typeof({})
+   9. typeof(NaN)
+Ans:
+code :
+console.log(typeof(1));
+console.log(typeof(1.1));
+console.log(typeof(true));
+console.log(typeof('1.1'));
+console.log(typeof(null));
+console.log(typeof(undefined));
+console.log(typeof([]));
+console.log(typeof({}));
+console.log(typeof(NaN));
+
+
+Output: 
+index.js:161 number
+index.js:162 number
+index.js:163 boolean
+index.js:164 string
+index.js:165 object
+index.js:166 undefined
+index.js:167 object
+index.js:168 object
+index.js:169 number
+
+
+
+5. Read what is prototype
+Ans:
+Every object in JavaScript has a built-in property, which is called its prototype.
+The prototype is itself an object, so the prototype will have its own prototype, making what's called a prototype chain.
+The chain ends when we reach a prototype that has null for its own prototype.
+
+All JavaScript objects inherit properties and methods from a prototype:
+
+Date objects inherit from Date.prototype
+Array objects inherit from Array.prototype
+Person objects inherit from Person.prototype
+The Object.prototype is on the top of the prototype inheritance chain:
+
+Date objects, Array objects, and Person objects inherit from Object.prototype.
+
+
+                
